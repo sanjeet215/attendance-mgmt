@@ -1,19 +1,16 @@
 <template>
   <CRow>
     <CCol sm="6" lg="3">
-      <CWidgetDropdown color="primary" header="9.823" text="Members online">
+      <CWidgetDropdown color="info" header="9.823" text="Organizations">
         <template #default>
-          <CDropdown
-            color="transparent p-0"
-            placement="bottom-end"
-          >
+          <CDropdown color="transparent p-1" placement="bottom-end">
             <template #toggler-content>
-              <CIcon name="cil-settings"/>
+              <CIcon name="cil-settings" />
             </template>
-            <CDropdownItem>Action</CDropdownItem>
-            <CDropdownItem>Another action</CDropdownItem>
-            <CDropdownItem>Something else here...</CDropdownItem>
-            <CDropdownItem disabled>Disabled action</CDropdownItem>
+            <CDropdownItem>List View</CDropdownItem>
+            <CDropdownItem>New Requests</CDropdownItem>
+            <CDropdownItem>Billing Details</CDropdownItem>
+            <CDropdownItem disabled>Show Full List</CDropdownItem>
           </CDropdown>
         </template>
         <template #footer>
@@ -29,19 +26,17 @@
         </template>
       </CWidgetDropdown>
     </CCol>
+
     <CCol sm="6" lg="3">
-      <CWidgetDropdown color="info" header="9.823" text="Members online">
+      <!-- <CWidgetDropdown color="info" header="9.823" text="New Requests"> -->
+      <CWidgetDropdown color="info" header="19.823" text="Employees">
         <template #default>
-          <CDropdown
-            color="transparent p-0"
-            placement="bottom-end"
-            :caret="false"
-          >
+          <CDropdown color="transparent p-0" placement="bottom-end" :caret="false">
             <template #toggler-content>
-              <CIcon name="cil-location-pin"/>
+              <CIcon name="cil-location-pin" />
             </template>
-            <CDropdownItem>Action</CDropdownItem>
-            <CDropdownItem>Another action</CDropdownItem>
+            <CDropdownItem>View Employee List</CDropdownItem>
+            <CDropdownItem>New Joinees</CDropdownItem>
             <CDropdownItem>Something else here...</CDropdownItem>
             <CDropdownItem disabled>Disabled action</CDropdownItem>
           </CDropdown>
@@ -60,19 +55,19 @@
         </template>
       </CWidgetDropdown>
     </CCol>
+
     <CCol sm="6" lg="3">
-      <CWidgetDropdown
+      <!-- <CWidgetDropdown
         color="warning"
         header="9.823"
         text="Members online"
-      >
+      >-->
+
+      <CWidgetDropdown color="info" header="9.823" text="New Requests">
         <template #default>
-          <CDropdown
-            color="transparent p-0"
-            placement="bottom-end"
-          >
+          <CDropdown color="transparent p-0" placement="bottom-end">
             <template #toggler-content>
-              <CIcon name="cil-settings"/>
+              <CIcon name="cil-settings" />
             </template>
             <CDropdownItem>Action</CDropdownItem>
             <CDropdownItem>Another action</CDropdownItem>
@@ -95,18 +90,12 @@
       </CWidgetDropdown>
     </CCol>
     <CCol sm="6" lg="3">
-      <CWidgetDropdown
-        color="danger"
-        header="9.823"
-        text="Members online"
-      >
+      <!-- <CWidgetDropdown color="danger" header="9.823" text="Members online"> -->
+      <CWidgetDropdown color="info" header="9.823" text="New Requests">
         <template #default>
-          <CDropdown
-            color="transparent p-0"
-            placement="bottom-end"
-          >
+          <CDropdown color="transparent p-0" placement="bottom-end">
             <template #toggler-content>
-             <CIcon name="cil-settings"/>
+              <CIcon name="cil-settings" />
             </template>
             <CDropdownItem>Action</CDropdownItem>
             <CDropdownItem>Another action</CDropdownItem>
@@ -129,10 +118,10 @@
 </template>
 
 <script>
-import { CChartLineSimple, CChartBarSimple } from '../charts/index.js'
+import { CChartLineSimple, CChartBarSimple } from "../charts/index.js";
 
 export default {
-  name: 'WidgetsDropdown',
+  name: "WidgetsDropdown",
   components: { CChartLineSimple, CChartBarSimple }
-}
+};
 </script>

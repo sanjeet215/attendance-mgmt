@@ -7,11 +7,24 @@
 // If you want to add something do it here
 @import "custom";
 
-.card-header:not(.content-center) > .c-icon:first-child {
-  margin-right: 0.1rem;
-  margin-top: 0.1rem;
-  vertical-align: top;
-  width: 1.2rem;
-  height: 1.2rem;
-  font-size: 1.2rem;
+//@import "~@coreui/coreui/scss/variables";
+
+.c-main {
+    background-color: white;
+    color: black;
+}
+
+.card-header {
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+label{
+    font-style: italic;
+}
+
+.form-control {
+    font-size: 0.8rem;
+    color: black;
 }

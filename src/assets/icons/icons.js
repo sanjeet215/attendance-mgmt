@@ -20,7 +20,7 @@ import {
   cibCcVisa,
   cibStripe,
   cibPaypal,
-  cibGooglePay, 
+  cibGooglePay,
   cibCcAmex
 } from '@coreui/icons'
 import {
@@ -31,6 +31,7 @@ import {
   cifEs,
   cifPl
 } from '@coreui/icons'
+
 import {
   cilArrowRight,
   cilBan,
@@ -51,6 +52,7 @@ import {
   cilEnvelopeClosed,
   cilEnvelopeOpen,
   cilEuro,
+  cilFullscreen,
   cilGlobeAlt,
   cilGrid,
   cilFile,
@@ -79,6 +81,11 @@ import {
   cilXCircle
 
 } from '@coreui/icons'
+
+import {
+  aws
+} from '@fortawesome/fontawesome-free'
+
 import { logo } from './logo'
 
 export const iconsSet = Object.assign(
@@ -107,6 +114,7 @@ export const iconsSet = Object.assign(
     cilGlobeAlt,
     cilGrid,
     cilFile,
+    cilFullscreen,
     cilJustifyCenter,
     cilLaptop,
     cilLayers,
@@ -157,11 +165,15 @@ export const iconsSet = Object.assign(
     cibBehance,
     cibReddit,
     cibVimeo,
-    cibCcMastercard, 
-    cibCcVisa, 
-    cibStripe, 
-    cibPaypal, 
+    cibCcMastercard,
+    cibCcVisa,
+    cibStripe,
+    cibPaypal,
     cibGooglePay,
     cibCcAmex
+
+  },
+  {
+    aws
   }
 )

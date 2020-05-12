@@ -13,6 +13,12 @@ const Typography = () => import('@/views/theme/Typography')
 const Charts = () => import('@/views/charts/Charts')
 const Widgets = () => import('@/views/widgets/Widgets')
 
+// Custom components
+const Addressform = () => import('@/components/Addressform')
+const Organizationform = () => import('@/components/Organizationform')
+const Adduserform = () => import('@/components/Adduserform')
+
+
 // Views - Components
 const Cards = () => import('@/views/base/Cards')
 const Forms = () => import('@/views/base/Forms')
@@ -143,6 +149,21 @@ function configRoutes () {
             render (c) { return c('router-view') }
           },
           children: [
+            {
+              path: 'addressform',
+              name: 'Addressform',
+              component: Addressform
+            },
+            {
+              path: 'addorganization',
+              name: 'Organizationform',
+              component: Organizationform
+            },
+            {
+              path: 'adduserform',
+              name: 'Adduserform',
+              component: Adduserform
+            },
             {
               path: 'cards',
               name: 'Cards',
