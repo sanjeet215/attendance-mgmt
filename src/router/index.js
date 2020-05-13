@@ -19,6 +19,10 @@ const Organizationform = () => import('@/components/Organizationform')
 const Adduserform = () => import('@/components/Adduserform')
 
 
+// Applicaiton views
+const Organization = () => import('@/views/organization/Organization')
+
+
 // Views - Components
 const Cards = () => import('@/views/base/Cards')
 const Forms = () => import('@/views/base/Forms')
@@ -153,6 +157,11 @@ function configRoutes () {
               path: 'addressform',
               name: 'Addressform',
               component: Addressform
+            },
+            {
+              path: 'organization',
+              name: 'Organization',
+              component: Organization
             },
             {
               path: 'addorganization',

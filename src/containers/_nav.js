@@ -107,10 +107,14 @@ export default [
       // },
       {
         _name: 'CSidebarNavDropdown',
-        name: 'Organization',
+        name: 'Manage Organization',
         route: '/base',
         icon: 'cil-People',
         items: [
+          {
+            name: 'Organization',
+            to: '/base/organization',
+          },
           {
             name: 'New Organization',
             to: '/base/addorganization',
