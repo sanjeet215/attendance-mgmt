@@ -1,51 +1,84 @@
-  <template>
-  <v-stepper v-model="e1">
-    <v-stepper-header>
-      <v-stepper-step :complete="e1 > 1" step="1">Name of step 1</v-stepper-step>
-
-      <v-divider></v-divider>
-
-      <v-stepper-step :complete="e1 > 2" step="2">Name of step 2</v-stepper-step>
-
-      <v-divider></v-divider>
-
-      <v-stepper-step step="3">Name of step 3</v-stepper-step>
-    </v-stepper-header>
-
-    <v-stepper-items>
-      <v-stepper-content step="1">
-        <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
-
-        <v-btn color="primary" @click="e1 = 2">Continue</v-btn>
-
-        <v-btn text>Cancel</v-btn>
-      </v-stepper-content>
-
-      <v-stepper-content step="2">
-        <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
-
-        <v-btn color="primary" @click="e1 = 3">Continue</v-btn>
-
-        <v-btn text>Cancel</v-btn>
-      </v-stepper-content>
-
-      <v-stepper-content step="3">
-        <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
-
-        <v-btn color="primary" @click="e1 = 1">Continue</v-btn>
-
-        <v-btn text>Cancel</v-btn>
-      </v-stepper-content>
-    </v-stepper-items>
-  </v-stepper>
+<template>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8 is-offset-2">
+          <horizontal-stepper
+            :steps="demoSteps"
+            @completed-step="completeStep"
+            @active-step="isStepActive"
+            @stepper-finished="alert"
+          ></horizontal-stepper>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
+import HorizontalStepper from "vue-stepper";
+import Organizationform from "./Organizationform";
+import Addressform from "./Addressform";
+
 export default {
+  name: "Organization",
+  components: {
+    HorizontalStepper
+  },
+
   data() {
     return {
-      e1: 1
+      demoSteps: [
+        {
+          icon: "home",
+          name: "first",
+          title: "New Organization",
+          subtitle: "Please populate details",
+          component: Organizationform,
+          completed: false
+        },
+        // {
+        //   icon: "report_problem",
+        //   name: "second",
+        //   title: "Add Moderator",
+        //   subtitle: "Organization contact details",
+        //   component: Addmoderatorform,
+        //   completed: false
+        // },
+        {
+          icon: "perm_contact_calendar",
+          name: "third",
+          title: "Update Address",
+          subtitle: "Please update the address",
+          component: Addressform,
+          completed: false
+        }
+      ]
     };
+  },
+  methods: {
+    // Executed when @completed-step event is triggered
+    completeStep(payload) {
+      this.demoSteps.forEach(step => {
+        if (step.name === payload.name) {
+          step.completed = true;
+        }
+      });
+    },
+    // Executed when @active-step event is triggered
+    isStepActive(payload) {
+      this.demoSteps.forEach(step => {
+        if (step.name === payload.name) {
+          if (step.completed === true) {
+            step.completed = false;
+          }
+        }
+      });
+    },
+    // Executed when @stepper-finished event is triggered
+    alert(payload) {
+      alert("end");
+    }
   }
 };
 </script>

@@ -21,7 +21,7 @@ const Adduserform = () => import('@/components/Adduserform')
 
 // Applicaiton views
 const Organization = () => import('@/views/organization/Organization')
-
+const Login = () => import('@/views/login/Login')
 
 // Views - Components
 const Cards = () => import('@/views/base/Cards')
@@ -60,7 +60,7 @@ const Modals = () => import('@/views/notifications/Modals')
 // Views - Pages
 const Page404 = () => import('@/views/pages/Page404')
 const Page500 = () => import('@/views/pages/Page500')
-const Login = () => import('@/views/pages/Login')
+//const Login = () => import('@/views/pages/Login')
 const Register = () => import('@/views/pages/Register')
 
 // Users
@@ -79,8 +79,12 @@ export default new Router({
 function configRoutes () {
   return [
     {
+      path:'/login',
+      component: Login
+    },
+    {
       path: '/',
-      redirect: '/dashboard',
+      redirect: '/login',
       name: 'Home',
       component: TheContainer,
       children: [
@@ -354,11 +358,6 @@ function configRoutes () {
           path: '500',
           name: 'Page500',
           component: Page500
-        },
-        {
-          path: 'login',
-          name: 'Login',
-          component: Login
         },
         {
           path: 'register',

@@ -4,7 +4,7 @@
       <CCol sm="8">
         <CCard>
           <CCardHeader>
-            <strong>Address Form</strong>        
+            <strong>Address Form</strong>
           </CCardHeader>
           <CCardBody>
             <form class="needs-validation" novalidate>
@@ -83,8 +83,31 @@
                   />
                   <div class="invalid-tooltip">Please provide a valid zip.</div>
                 </div>
+                <br />
               </div>
-              <button class="btn btn-primary btn-submit" type="submit">Submit form</button>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <div>
+                    <label>Country</label>
+                    <multiselect
+                      v-model="value"
+                      track-by="name"
+                      label="name"
+                      placeholder="Select one"
+                      :options="options"
+                      :searchable="true"
+                      :allow-empty="false"
+                    >
+                      <template slot="singleLabel" slot-scope="{ option }">
+                        {{ option.name }}
+                        <!-- <strong>{{ option.language }}</strong> -->
+                      </template>
+                    </multiselect>
+                    <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
+                  </div>
+                </div>
+              </div>
+              <!-- <button class="btn btn-primary btn-submit" type="submit">Submit form-1</button> -->
             </form>
           </CCardBody>
         </CCard>
@@ -94,37 +117,19 @@
 </template>
 
 <script>
+import Multiselect from "vue-multiselect";
 export default {
   name: "Addressform",
+  components: { Multiselect },
   data() {
     return {
-      selected: [], // Must be an array reference!
-      show: true,
-      horizontal: { label: "col-3", input: "col-9" },
-      options: ["Option 1", "Option 2", "Option 3"],
-      selectOptions: [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        {
-          value: ["some value", "another value"],
-          label: "Selected option"
-        }
-      ],
-      selectedOption: ["some value", "another value"],
-
-      formCollapsed: true,
-      checkboxNames: [
-        "Checkboxes",
-        "Inline Checkboxes",
-        "Checkboxes - custom",
-        "Inline Checkboxes - custom"
-      ],
-      radioNames: [
-        "Radios",
-        "Inline Radios",
-        "Radios - custom",
-        "Inline Radios - custom"
+      value: null,
+       options: [
+        { name: 'Vue.js', language: 'JavaScript' },
+        { name: 'Rails', language: 'Ruby' },
+        { name: 'Sinatra', language: 'Ruby' },
+        { name: 'Laravel', language: 'PHP', $isDisabled: true },
+        { name: 'Phoenix', language: 'Elixir' }
       ]
     };
   },
@@ -135,3 +140,4 @@ export default {
   }
 };
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

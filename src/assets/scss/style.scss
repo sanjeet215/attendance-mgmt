@@ -9,9 +9,11 @@
 
 //@import "~@coreui/coreui/scss/variables";
 
+@import "vue-select/src/scss/vue-select.scss";
+
 .c-main {
     background-color: white;
-    color: black;
+    color: #35495e;
 }
 
 .card-header {
@@ -27,4 +29,5 @@ label{
 .form-control {
     font-size: 0.8rem;
     color: black;
+    height: calc(2.2em + 0.75rem + 2px);
 }
