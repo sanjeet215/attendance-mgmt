@@ -8,7 +8,7 @@ export default
           name: 'Dashboard',
           to: '/dashboard',
           icon: 'cil-speedometer',
-          _authentication: 'ROLE_MODERATOR'
+          _authentication: 'ROLE_USER'
         },
         {
           _name: 'CSidebarNavDropdown',
