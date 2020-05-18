@@ -23,7 +23,7 @@ export default
             },
             {
               name: 'On-board Organization',
-              to: '/base/navbars'
+              to: '/base/addorganization'
             }
           ]
         }
