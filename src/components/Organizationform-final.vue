@@ -4,29 +4,24 @@
       <CCard>
         <CCardHeader class="card-header">New Organization</CCardHeader>
         <CCardBody>
-          <form id="neworganization" @submit="submitForm" class="needs-validation" novalidate>
+          <form id="neworganization" @submit="checkForm" class="needs-validation" novalidate>
             <div class="form-row">
               <div class="col-md-5 mb-3">
-                <label for="validationTooltip01">Organization Ref Name *</label>
-                <div class="control" :class="{'form-group--error': $v.form.orgRefName.$error}">
+                <label for="validationTooltip01">Organization Ref Name</label>
+                <div class="control">
                   <input
                     id="orgRefName"
                     class="form-control"
+                    :class="['input', ($v.form.orgRefName.$error) ? 'is-danger' : '']"
                     type="text"
                     placeholder="Organization Ref Name"
                     v-model="form.orgRefName"
-                    @input="$v.form.orgRefName.$touch()"
-                    @blur="$v.form.orgRefName.$touch()"
-                    :error-messages="orgRefNameErrors"
                   />
                 </div>
-                <!-- <div class="error" v-if="!$v.form.orgRefName.required">Field is required</div> -->
-                <div class="error" v-if="!$v.form.orgRefName.minLength">Reference Name must have at least {{$v.form.orgRefName.$params.minLength.min}} letters.</div>
-                <div class="error" v-if="!$v.form.orgRefName.maxLength">Reference Name can be max {{$v.form.orgRefName.$params.maxLength.max}} letters.</div>
-                <!-- <p
+                <p
                   v-if="$v.form.orgRefName.$error"
                   class="help is-danger"
-                >This orgRefName is invalid</p> -->
+                >This orgRefName is invalid</p>
               </div>
               <div class="col-md-7 mb-3">
                 <label for="validationTooltip01">Organization Name</label>
@@ -126,7 +121,7 @@
               </div>
             </div>
             <div>
-              <button class="btn btn-primary btn-submit" type="submit">Submit form</button>
+              <button class="btn btn-primary btn-submit" type="submit" :disabled='isDisabled'>Submit form</button>
             </div>
           </form>
         </CCardBody>
@@ -139,13 +134,7 @@
 
 <script>
 import { validationMixin } from "vuelidate";
-import {
-  required,
-  email,
-  maxLength,
-  minLength,
-  between
-} from "vuelidate/lib/validators";
+import { required, email } from "vuelidate/lib/validators";
 import Vuelidate from "vuelidate";
 
 export default {
@@ -153,7 +142,7 @@ export default {
   props: ["clickedNext", "currentStep"],
   mixins: [validationMixin],
   data() {
-    errors: [];
+    errors:[];
     return {
       form: {
         orgRefName: "",
@@ -178,19 +167,32 @@ export default {
   //   lastName: ""
   // },
 
-  methods: {
-    submitForm: function(e) {
-      console.log("This method is invoked");
-      //console.log(e.orgRefName);
+  methods : {
+    checkForm:function(e){
+        console.log('This method is invoked');
+
+        console.log(this.form.orgRefName);
+        this.errors = [];
+
+        // if(this.orgRefName && this.orgRefName !== ''){
+        //     this.errors.push('organization reference name is required');
+        //     console.log('Error occured');
+        // }
+           
+
+        this.$v.form.$touch();
+      // if its still pending or an error is returned do not submit
+      if (this.$v.form.$pending || this.$v.form.$error) return;
+      // to form submit after this
+
+      e.preventDefault();
     }
   },
 
   validations: {
     form: {
       orgRefName: {
-        required,
-        maxLength: maxLength(10),
-        minLength: minLength(3)
+        required
       },
       orgName: {
         required
@@ -213,17 +215,36 @@ export default {
       }
     }
   },
-  computed: {
-    orgRefNameErrors () {
-      const errors = []
-      if (!this.$v.form.orgRefName.$dirty) return errors
-      !this.$v.form.orgRefName.maxLength && errors.push('orgRefName must be at most 10 characters long')
-      !this.$v.form.orgRefName.required && errors.push('orgRefName is required.')
-      console.log('this is executted');
-      return errors
+  watch: {
+    $v: {
+      handler: function(val) {
+        if (!val.$invalid) {
+          this.$emit("can-continue", { value: true });
+        } else {
+          this.$emit("can-continue", { value: false });
+        }
+      },
+      deep: true
     },
+    clickedNext(val) {
+      if (val === true) {
+        this.$v.form.$touch();
+      }
+    }
+  },
+  mounted() {
+
+    if (!this.$v.$invalid) {
+      this.$emit("can-continue", { value: true });
+    } else {
+      this.$emit("can-continue", { value: false });
+    }
+  },
+
+  computed: {
+      isDisabled: function(){
+          return false;        
+      }
   }
-
-
 };
 </script>
