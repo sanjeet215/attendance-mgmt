@@ -20,9 +20,15 @@
                     :error-messages="orgRefNameErrors"
                   />
                 </div>
+                <div class="error">
+                  <span>{{ orgRefNameErrors[0] }}</span>
+                </div>
+
+                <!-- <div class="error" v-if="$v.form.orgRefName.$error"> {{$v.form.orgRefName}} </div> -->
+                
                 <!-- <div class="error" v-if="!$v.form.orgRefName.required">Field is required</div> -->
-                <div class="error" v-if="!$v.form.orgRefName.minLength">Reference Name must have at least {{$v.form.orgRefName.$params.minLength.min}} letters.</div>
-                <div class="error" v-if="!$v.form.orgRefName.maxLength">Reference Name can be max {{$v.form.orgRefName.$params.maxLength.max}} letters.</div>
+                <!-- <div class="error" v-if="!$v.form.orgRefName.minLength">Reference Name must have at least {{$v.form.orgRefName.$params.minLength.min}} letters.</div>
+                <div class="error" v-if="!$v.form.orgRefName.maxLength">Reference Name can be max {{$v.form.orgRefName.$params.maxLength.max}} letters.</div> -->
                 <!-- <p
                   v-if="$v.form.orgRefName.$error"
                   class="help is-danger"
@@ -127,6 +133,7 @@
             </div>
             <div>
               <button class="btn btn-primary btn-submit" type="submit">Submit form</button>
+              <!-- v-on:click.stop.prevent="submit" -->
             </div>
           </form>
         </CCardBody>
@@ -180,7 +187,7 @@ export default {
 
   methods: {
     submitForm: function(e) {
-      console.log("This method is invoked");
+      console.log("This method is invoked - submit form");
       //console.log(e.orgRefName);
     }
   },
@@ -217,9 +224,19 @@ export default {
     orgRefNameErrors () {
       const errors = []
       if (!this.$v.form.orgRefName.$dirty) return errors
-      !this.$v.form.orgRefName.maxLength && errors.push('orgRefName must be at most 10 characters long')
+
       !this.$v.form.orgRefName.required && errors.push('orgRefName is required.')
-      console.log('this is executted');
+      !this.$v.form.orgRefName.minLength && errors.push('orgRefName must be at atleast 2 characters long')
+      !this.$v.form.orgRefName.maxLength && errors.push('orgRefName must be at most 10 characters long')
+      
+      
+      console.log('this is invoked');
+      console.log("Error"+ errors.length);
+
+      for( var i =0 ;i<errors.length;i++){
+        console.log(errors[i]);
+      }
+
       return errors
     },
   }
