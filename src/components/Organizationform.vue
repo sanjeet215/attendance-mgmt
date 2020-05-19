@@ -194,7 +194,6 @@ export default {
     },
     handleBlur(orgRefName) {
       console.log("Blur Function works" + this.form.orgRefName);
-      const errors = [];
 
       if (orgRefName === "asiczen") {
         errors.push("Organization id is already taken");
@@ -220,6 +219,14 @@ export default {
       var isValid = regex.test(inputData);
 
       if (isValid) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    isEmailidUnique(emailid) {
+      if (emailid === "sanjeet.mohanty@db.com") {
         return true;
       } else {
         return false;
@@ -379,9 +386,10 @@ export default {
         errors.push("Please enter a valid email id!");
 
       if (errors.length === 0) {
-        console.log(
-          "If there are no error --> then check on server for unique ness"
-        );
+        if (this.isEmailidUnique(this.form.contactEmail)) {
+          errors.push("Email Id already taken!");
+        } else {
+        }
       }
 
       return errors;
