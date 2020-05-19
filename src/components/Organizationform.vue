@@ -23,111 +23,124 @@
                 <div class="error">
                   <span>{{ orgRefNameErrors[0] }}</span>
                 </div>
-                <!-- <div class="error" v-if="$v.form.orgRefName.$error"> {{$v.form.orgRefName}} </div> -->
-                
-                <!-- <div class="error" v-if="!$v.form.orgRefName.required">Field is required</div> -->
-                <!-- <div class="error" v-if="!$v.form.orgRefName.minLength">Reference Name must have at least {{$v.form.orgRefName.$params.minLength.min}} letters.</div>
-                <div class="error" v-if="!$v.form.orgRefName.maxLength">Reference Name can be max {{$v.form.orgRefName.$params.maxLength.max}} letters.</div> -->
-                <!-- <p
-                  v-if="$v.form.orgRefName.$error"
-                  class="help is-danger"
-                >This orgRefName is invalid</p> -->
               </div>
               <div class="col-md-7 mb-3">
                 <label for="validationTooltip01">Organization Name *</label>
-                <div class="control">
+                <div class="control" :class="{'form-group--error': $v.form.orgName.$error}">
                   <input
+                    id="orgName"
                     class="form-control"
-                    :class="['input', ($v.form.orgName.$error) ? 'is-danger' : '']"
                     type="text"
                     placeholder="Organization Name"
                     v-model="form.orgName"
+                    @input="$v.form.orgName.$touch()"
+                    @blur="$v.form.orgName.$touch()"
+                    :error-messages="orgNameErrors"
                   />
                 </div>
-                <p v-if="$v.form.orgName.$error" class="help is-danger">This orgName is invalid</p>
+                <div class="error">
+                  <span>{{ orgNameErrors[0] }}</span>
+                </div>
               </div>
             </div>
+
             <div class="form-row">
               <div class="col-md-12 mb-3">
                 <label for="validationTooltip01">Description</label>
-                <div class="control">
+                <div class="control" :class="{'form-group--error': $v.form.description.$error}">
                   <input
+                    id="description"
                     class="form-control"
-                    :class="['input', ($v.form.description.$error) ? 'is-danger' : '']"
                     type="text"
                     placeholder="Description"
                     v-model="form.description"
+                    @input="$v.form.description.$touch()"
+                    @blur="$v.form.description.$touch()"
+                    :error-messages="descriptionErrors"
                   />
                 </div>
-                <p
-                  v-if="$v.form.description.$error"
-                  class="help is-danger"
-                >This Description is invalid</p>
+                <div class="error">
+                  <span>{{ descriptionErrors[0] }}</span>
+                </div>
               </div>
             </div>
 
             <div class="form-row">
               <div class="col-md-6 mb-3">
                 <label for="validationTooltip01">First Name *</label>
-                <div class="control">
+                <div class="control" :class="{'form-group--error': $v.form.firstName.$error}">
                   <input
+                    id="firstName"
                     class="form-control"
-                    :class="['input', ($v.form.firstName.$error) ? 'is-danger' : '']"
                     type="text"
                     placeholder="First Name"
                     v-model="form.firstName"
+                    @input="$v.form.firstName.$touch()"
+                    @blur="$v.form.firstName.$touch()"
+                    :error-messages="firstNameErrors"
                   />
                 </div>
-                <p v-if="$v.form.firstName.$error" class="help is-danger">This firstName is invalid</p>
+                <div class="error">
+                  <span>{{ firstNameErrors[0] }}</span>
+                </div>
               </div>
 
               <div class="col-md-6 mb-3">
                 <label for="validationTooltip01">Last Name *</label>
-                <div class="control">
+                <div class="control" :class="{'form-group--error': $v.form.lastName.$error}">
                   <input
+                    id="lastName"
                     class="form-control"
-                    :class="['input', ($v.form.lastName.$error) ? 'is-danger' : '']"
                     type="text"
                     placeholder="Last Name"
                     v-model="form.lastName"
+                    @input="$v.form.lastName.$touch()"
+                    @blur="$v.form.lastName.$touch()"
+                    :error-messages="lastNameErrors"
                   />
                 </div>
-                <p v-if="$v.form.lastName.$error" class="help is-danger">This Last Name is invalid</p>
+                <div class="error">
+                  <span>{{ lastNameErrors[0] }}</span>
+                </div>
               </div>
             </div>
 
             <div class="form-row">
               <div class="col-md-6 mb-3">
                 <label for="validationTooltip01">Contact Number *</label>
-                <div class="control">
+                <div class="control" :class="{'form-group--error': $v.form.contactNumber.$error}">
                   <input
+                    id="contactNumber"
                     class="form-control"
-                    :class="['input', ($v.form.contactNumber.$error) ? 'is-danger' : '']"
                     type="text"
                     placeholder="Contact Number"
                     v-model="form.contactNumber"
+                    @input="$v.form.contactNumber.$touch()"
+                    @blur="$v.form.contactNumber.$touch()"
+                    :error-messages="contactNumberErrors"
                   />
                 </div>
-                <p
-                  v-if="$v.form.contactNumber.$error"
-                  class="help is-danger"
-                >This contactNumber is invalid</p>
+                <div class="error">
+                  <span>{{ contactNumberErrors[0] }}</span>
+                </div>
               </div>
               <div class="col-md-6 mb-3">
-                <label for="validationTooltip01">Email Id *</label>
-                <div class="control">
+                <label for="validationTooltip01">Contact Email *</label>
+                <div class="control" :class="{'form-group--error': $v.form.contactEmail.$error}">
                   <input
+                    id="contactEmail"
                     class="form-control"
-                    :class="['input', ($v.form.contactEmail.$error) ? 'is-danger' : '']"
                     type="text"
-                    placeholder="Email Id"
+                    placeholder="Contact Email"
                     v-model="form.contactEmail"
+                    @input="$v.form.contactEmail.$touch()"
+                    @blur="$v.form.contactEmail.$touch()"
+                    :error-messages="contactEmailErrors"
                   />
                 </div>
-                <p
-                  v-if="$v.form.contactEmail.$error"
-                  class="help is-danger"
-                >This contactEmail is invalid</p>
+                <div class="error">
+                  <span>{{ contactEmailErrors[0] }}</span>
+                </div>
               </div>
             </div>
             <div>
@@ -173,16 +186,6 @@ export default {
       }
     };
   },
-  //   data: {
-  //   errors:[],
-  //   orgRefName: "",
-  //   orgName: "",
-  //   contactNumber: "",
-  //   contactEmail: "",
-  //   description: "",
-  //   firstName: "",
-  //   lastName: ""
-  // },
 
   methods: {
     submitForm: function(e) {
@@ -190,17 +193,37 @@ export default {
       //console.log(e.orgRefName);
     },
     handleBlur(orgRefName) {
-      console.log('Blur Function works'+ this.form.orgRefName);
-      const errors = []
+      console.log("Blur Function works" + this.form.orgRefName);
+      const errors = [];
 
-      if(orgRefName === 'asiczen'){
-        errors.push('Organization id is already taken'); 
+      if (orgRefName === "asiczen") {
+        errors.push("Organization id is already taken");
         return false;
       } else {
         return true;
       }
+    },
 
-      
+    haveSpecialChar(inputData) {
+      const regex = /^[A-Za-z0-9 ]+$/;
+      var isValid = regex.test(inputData);
+
+      if (isValid) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    isContactNumberValid(inputData) {
+      const regex = /^[0][1-9]\d{9}$|^[1-9]\d{9}$/;
+      var isValid = regex.test(inputData);
+
+      if (isValid) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
 
@@ -212,7 +235,9 @@ export default {
         minLength: minLength(3)
       },
       orgName: {
-        required
+        required,
+        maxLength: maxLength(50),
+        minLength: minLength(3)
       },
       contactEmail: {
         required,
@@ -225,37 +250,142 @@ export default {
         required
       },
       firstName: {
-        required
+        required,
+        maxLength: maxLength(16),
+        minLength: minLength(1)
       },
       lastName: {
-        required
+        required,
+        maxLength: maxLength(16),
+        minLength: minLength(1)
       }
     }
   },
   computed: {
-    orgRefNameErrors () {
-      const errors = []
-      if (!this.$v.form.orgRefName.$dirty) return errors
+    orgRefNameErrors() {
+      const errors = [];
+      if (!this.$v.form.orgRefName.$dirty) return errors;
 
-      !this.$v.form.orgRefName.required && errors.push('orgRefName is required.')
-      !this.$v.form.orgRefName.minLength && errors.push('orgRefName must be at atleast 2 characters long')
-      !this.$v.form.orgRefName.maxLength && errors.push('orgRefName must be at most 10 characters long')
+      !this.$v.form.orgRefName.required &&
+        errors.push("orgRefName is required.");
+      !this.$v.form.orgRefName.minLength &&
+        errors.push("orgRefName must be at atleast 2 characters long");
+      !this.$v.form.orgRefName.maxLength &&
+        errors.push("orgRefName must be at most 10 characters long");
 
-      console.log('this is invoked');
-      console.log("Error"+ errors.length);
+      console.log("this is invoked");
+      console.log("Error" + errors.length);
 
-      console.log('Testing testing '+this.form.orgRefName)
+      console.log("Testing testing " + this.form.orgRefName);
 
-      if(errors.length === 0){
-        if(!this.handleBlur(this.form.orgRefName)){
-           errors.push('id is already taken!'); 
+      if (errors.length === 0) {
+        if (!this.handleBlur(this.form.orgRefName)) {
+          errors.push("id is already taken!");
         }
       }
 
-      return errors
+      return errors;
+    },
+    orgNameErrors() {
+      const errors = [];
+      if (!this.$v.form.orgName.$dirty) return errors;
+
+      !this.$v.form.orgName.required && errors.push("orgName is required.");
+      !this.$v.form.orgName.minLength &&
+        errors.push("orgName must be at atleast 2 characters long");
+      !this.$v.form.orgName.maxLength &&
+        errors.push("orgName must be at most 10 characters long");
+
+      console.log("this is invoked");
+      console.log("Error" + errors.length);
+      console.log("Testing testing " + this.form.orgName);
+
+      return errors;
+    },
+
+    descriptionErrors() {
+      const errors = [];
+
+      if (!this.$v.form.description.$dirty) return errors;
+
+      if (!this.haveSpecialChar(this.form.description)) {
+        errors.push("Special Characters such as @,#,$ not allowed.");
+      }
+
+      return errors;
+    },
+
+    firstNameErrors() {
+      const errors = [];
+      if (!this.$v.form.firstName.$dirty) return errors;
+
+      !this.$v.form.firstName.required &&
+        errors.push("First Name is required.");
+
+      if (!this.haveSpecialChar(this.form.firstName)) {
+        errors.push("Special Characters such as @,#,$ not allowed.");
+      }
+
+      !this.$v.form.firstName.minLength &&
+        errors.push("First Name must be at atleast 1 character long");
+      !this.$v.form.firstName.maxLength &&
+        errors.push("First Name must be at most 16 characters long");
+
+      return errors;
+    },
+
+    lastNameErrors() {
+      const errors = [];
+      if (!this.$v.form.lastName.$dirty) return errors;
+
+      !this.$v.form.lastName.required && errors.push("First Name is required.");
+
+      if (!this.haveSpecialChar(this.form.lastName)) {
+        errors.push("Special Characters such as @,#,$ not allowed.");
+      }
+
+      !this.$v.form.lastName.minLength &&
+        errors.push("Last Name must be at atleast 1 character long");
+      !this.$v.form.lastName.maxLength &&
+        errors.push("Last Name must be at most 16 characters long");
+
+      return errors;
+    },
+
+    contactNumberErrors() {
+      const errors = [];
+
+      if (!this.$v.form.contactNumber.$dirty) return errors;
+
+      !this.$v.form.contactNumber.required &&
+        errors.push("Contact Number is required.");
+
+      if (!this.isContactNumberValid(this.form.contactNumber)) {
+        errors.push("Please enter a valid contact number");
+      }
+
+      return errors;
+    },
+
+    contactEmailErrors() {
+      const errors = [];
+
+      if (!this.$v.form.contactEmail.$dirty) return errors;
+
+      !this.$v.form.contactEmail.required &&
+        errors.push("Email Id is a required field!");
+
+      !this.$v.form.contactEmail.email &&
+        errors.push("Please enter a valid email id!");
+
+      if (errors.length === 0) {
+        console.log(
+          "If there are no error --> then check on server for unique ness"
+        );
+      }
+
+      return errors;
     }
   }
-
-
 };
 </script>
