@@ -23,7 +23,6 @@
                 <div class="error">
                   <span>{{ orgRefNameErrors[0] }}</span>
                 </div>
-
                 <!-- <div class="error" v-if="$v.form.orgRefName.$error"> {{$v.form.orgRefName}} </div> -->
                 
                 <!-- <div class="error" v-if="!$v.form.orgRefName.required">Field is required</div> -->
@@ -35,7 +34,7 @@
                 >This orgRefName is invalid</p> -->
               </div>
               <div class="col-md-7 mb-3">
-                <label for="validationTooltip01">Organization Name</label>
+                <label for="validationTooltip01">Organization Name *</label>
                 <div class="control">
                   <input
                     class="form-control"
@@ -69,7 +68,7 @@
 
             <div class="form-row">
               <div class="col-md-6 mb-3">
-                <label for="validationTooltip01">First Name</label>
+                <label for="validationTooltip01">First Name *</label>
                 <div class="control">
                   <input
                     class="form-control"
@@ -83,7 +82,7 @@
               </div>
 
               <div class="col-md-6 mb-3">
-                <label for="validationTooltip01">Last Name</label>
+                <label for="validationTooltip01">Last Name *</label>
                 <div class="control">
                   <input
                     class="form-control"
@@ -99,7 +98,7 @@
 
             <div class="form-row">
               <div class="col-md-6 mb-3">
-                <label for="validationTooltip01">Contact Number</label>
+                <label for="validationTooltip01">Contact Number *</label>
                 <div class="control">
                   <input
                     class="form-control"
@@ -115,7 +114,7 @@
                 >This contactNumber is invalid</p>
               </div>
               <div class="col-md-6 mb-3">
-                <label for="validationTooltip01">Email Id</label>
+                <label for="validationTooltip01">Email Id *</label>
                 <div class="control">
                   <input
                     class="form-control"
@@ -189,6 +188,19 @@ export default {
     submitForm: function(e) {
       console.log("This method is invoked - submit form");
       //console.log(e.orgRefName);
+    },
+    handleBlur(orgRefName) {
+      console.log('Blur Function works'+ this.form.orgRefName);
+      const errors = []
+
+      if(orgRefName === 'asiczen'){
+        errors.push('Organization id is already taken'); 
+        return false;
+      } else {
+        return true;
+      }
+
+      
     }
   },
 
@@ -228,17 +240,20 @@ export default {
       !this.$v.form.orgRefName.required && errors.push('orgRefName is required.')
       !this.$v.form.orgRefName.minLength && errors.push('orgRefName must be at atleast 2 characters long')
       !this.$v.form.orgRefName.maxLength && errors.push('orgRefName must be at most 10 characters long')
-      
-      
+
       console.log('this is invoked');
       console.log("Error"+ errors.length);
 
-      for( var i =0 ;i<errors.length;i++){
-        console.log(errors[i]);
+      console.log('Testing testing '+this.form.orgRefName)
+
+      if(errors.length === 0){
+        if(!this.handleBlur(this.form.orgRefName)){
+           errors.push('id is already taken!'); 
+        }
       }
 
       return errors
-    },
+    }
   }
 
 
