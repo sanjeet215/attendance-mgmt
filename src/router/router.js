@@ -17,7 +17,7 @@ const Adduserform = () => import('@/components/Adduserform')
 // Applicaiton views
 const Organization = () => import('@/views/organization/Organization')
 const Login = () => import('@/views/login/Login')
-
+const Vieworganization = () => import('@/components/ViewOrganization')
 
 Vue.use(Router)
 
@@ -65,6 +65,11 @@ function configRoutes() {
               name: 'Organization',
               component: Organization,
               meta: { authorize: [Role.ROLE_MODERATOR] }
+            },
+            {
+              path: 'vieworganization',
+              name: 'Vieworganization',
+              component: Vieworganization
             },
             {
               path: 'addorganization',

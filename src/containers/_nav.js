@@ -24,6 +24,10 @@ export default
             {
               name: 'On-board Organization',
               to: '/base/addorganization'
+            },
+            {
+              name: 'View Organization',
+              to: '/base/vieworganization'
             }
           ]
         }

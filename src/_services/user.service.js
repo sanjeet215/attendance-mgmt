@@ -17,6 +17,7 @@ function checkForm(username, password){
 }
 
 function login(username, password) {
+    console.log('login function is invoked');
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

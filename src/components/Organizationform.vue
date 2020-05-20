@@ -4,7 +4,7 @@
       <CCard>
         <CCardHeader class="card-header">New Organization</CCardHeader>
         <CCardBody>
-          <form id="neworganization" @submit="submitForm" class="needs-validation" novalidate>
+          <form id="neworganization" @submit.prevent="submitForm" class="needs-validation" novalidate>
             <div class="form-row">
               <div class="col-md-5 mb-3">
                 <label for="validationTooltip01">Organization Ref Name *</label>
@@ -157,6 +157,9 @@
 </template>
 
 <script>
+//import { orgService } from "../_services/organization.service";
+import { userService } from "../_services/index.js";
+
 import { validationMixin } from "vuelidate";
 import {
   required,
@@ -188,15 +191,23 @@ export default {
   },
 
   methods: {
-    submitForm: function(e) {
-      console.log("This method is invoked - submit form");
-      //console.log(e.orgRefName);
-    },
-    handleBlur(orgRefName) {
-      console.log("Blur Function works" + this.form.orgRefName);
+    // submitForm: function(e) {
+    //   console.log('FOrm started');
+    //   //this.validateOrgRefId();
+    //   this.service.validateOrgRefId();
+    //   console.log("This method is invoked - submit form");
+    //   //console.log(e.orgRefName);
+      
+    // },
+    submitForm(){
+      console.log('FOrm started');
+      // this.validateOrgRefId();
+      this.userService.test();
 
-      if (orgRefName === "asiczen") {
-        errors.push("Organization id is already taken");
+    },
+
+    handleBlur(orgRefName) {
+    if (orgRefName === "asiczen") {
         return false;
       } else {
         return true;

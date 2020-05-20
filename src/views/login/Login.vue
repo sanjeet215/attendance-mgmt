@@ -85,7 +85,7 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
-//import { userService } from "../_services/user.service";
+import { userService } from "../../_services/user.service";
 
 export default {
   data() {
@@ -108,6 +108,7 @@ export default {
       this.submitted = true;
       const { username, password } = this;
       if (username && password) {
+        //this.test();
         this.login({ username, password });
       }
     }
