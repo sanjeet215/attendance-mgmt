@@ -1,7 +1,7 @@
 const usersData = [
-  { username: 'Samppa Nori', registered: '2012/01/01', role: 'Member', status: 'Active'},
-  { username: 'Estavan Lykos', registered: '2012/02/01', role: 'Staff', status: 'Banned'},
-  { username: 'Chetan Mohamed', registered: '2012/02/01', role: 'Admin', status: 'Inactive'},
+  { username: 'Samppa Nori', registered: '2012/01/01', role: 'Member', status: 'Active',status1: 'Active'},
+  { username: 'Estavan Lykos', registered: '2012/02/01', role: 'Staff', status: 'Banned',status1: 'Active'},
+  { username: 'Chetan Mohamed', registered: '2012/02/01', role: 'Admin', status: 'Inactive',status1: 'Active'},
   { username: 'Derick Maximinus', registered: '2012/03/01', role: 'Member', status: 'Pending'},
   { username: 'Friderik Dávid', registered: '2012/01/21', role: 'Staff', status: 'Active'},
   { username: 'Yiorgos Avraamu', registered: '2012/01/01', role: 'Member', status: 'Active'},
@@ -23,8 +23,9 @@ const usersData = [
   { username: 'Zbyněk Phoibos', registered: '2012/02/01', role: 'Staff', status: 'Banned'},
   { username: 'Einar Randall', registered: '2012/02/01', role: 'Admin', status: 'Inactive', _classes: 'table-danger'},
   { username: 'Félix Troels', registered: '2012/03/21', role: 'Staff', status: 'Active'},
-  { username: 'Aulus Agmundr', registered: '2012/01/01', role: 'Member', status: 'Pending'}
+  { username: 'Aulus Agmundr', registered: '2012/01/01', role: 'Member', status: 'Pending',status1: 'Active'}
 ]
+
 
 export default usersData
 

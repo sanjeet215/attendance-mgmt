@@ -12,7 +12,7 @@ class TutorialDataService {
   }
 
   get(id) {
-    return http.get(`/tutorials/${id}`);
+    return http.get(`/org/${id}`);
   }
 
   create(data) {

@@ -1,14 +1,14 @@
 <template>
   <CRow>
-    <CCol col="12" xl="8">
+    <CCol col="12" sm="12">
       <CCard>
         <CCardHeader>
-          Users
+          Organization List
         </CCardHeader>
         <CCardBody>
           <CDataTable
             hover
-            striped
+            :sorter='{ external: false, resetable: true }'
             :items="items"
             :fields="fields"
             :items-per-page="5"
@@ -20,9 +20,11 @@
           >
             <template #status="data">
               <td>
-                <CBadge :color="getBadge(data.item.status)">
-                  {{data.item.status}}
-                </CBadge>
+                {{data.item.status ? "Active" : "Disabled"}}
+                <!-- <CBadge :color="getBadge(data.item.status)"> -->
+                  <!-- {{data.item.status}} -->
+                  <!-- {{data.item.status ? "Active" : "Disabled"}} -->
+                <!-- </CBadge> -->
               </td>
             </template>
           </CDataTable>
@@ -33,17 +35,19 @@
 </template>
 
 <script>
-import usersData from './UsersData'
+// import usersData from './UsersData'
+import TutorialDataService from '../../service/TutorialDataService';
 export default {
   name: 'Users',
   data () {
     return {
-      items: usersData,
+      items: [],
       fields: [
-        { key: 'username', label: 'Name', _classes: 'font-weight-bold' },
-        { key: 'registered' },
-        { key: 'role' },
-        { key: 'status' }
+        { key: 'orgRefName', label: 'Organization-Id', _classes: 'td-style' },
+        { key: 'orgName',label: 'Name', _classes: 'td-style' },
+        { key: 'description' ,label: 'Description',_classes: 'td-style'},
+        { key: 'imaeUrl',label: 'Image Url',_classes: 'td-style' },
+        { key: 'status',label: 'Status',_classes: 'td-style' } 
       ],
       activePage: 1
     }
@@ -68,12 +72,33 @@ export default {
         default: 'primary'
       }
     },
+    // rowClicked (item, index) {
+    //   this.$router.push({path: `users/${index + 1}`})
+    // },
+
     rowClicked (item, index) {
-      this.$router.push({path: `users/${index + 1}`})
+      console.log('Org Id read ---> '+ item.orgId);
+      //this.$router.push({path: `users/${index + 1}`})
+      this.$router.push({path: `users/${item.orgId}`})
     },
+
     pageChange (val) {
       this.$router.push({ query: { page: val }})
+    },
+
+    getallOrganization() {
+       TutorialDataService.getAll().then(response => {
+         let serverData = response.data;
+         this.items = serverData.data;
+         console.log(this.items);
+       }).catch(function error(){
+         console.log(error);
+       });
     }
-  }
+  },
+
+  mounted() {
+    this.getallOrganization();
+  },
 }
 </script>

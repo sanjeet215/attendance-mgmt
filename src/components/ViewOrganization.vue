@@ -10,6 +10,7 @@
               <th class="th-style">Organization Id</th>
               <th class="th-style">Name</th>
               <th class="th-style">Description</th>
+              <th class="th-style">Image Url</th>
               <th class="th-style">status</th>
               <!-- <th class="th-style">View Details</th> -->
             </tr>
@@ -19,6 +20,7 @@
               <td class="td-style"><a class="text-primary pointer" v-on:click="testClick(org.orgId)">{{org.orgRefName}}</a></td>
               <td class="td-style">{{org.orgName}}</td>
               <td class="td-style">{{org.description}}</td>
+              <td class="td-style">{{org.imaeUrl}}</td>
               <td class="td-style">{{org.status ? "Active" : "Disabled" }}</td>
             </tr>
           </tbody>
