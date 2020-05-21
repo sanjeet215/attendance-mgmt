@@ -22,12 +22,20 @@ export default
               to: '/base/addressform'
             },
             {
-              name: 'On-board Organization',
+              name: 'New Organization',
               to: '/base/addorganization'
             },
             {
               name: 'View Organization',
               to: '/base/vieworganization'
+            },
+            {
+              name: 'Organization Details',
+              to: '/base/vieworganization/:id'
+            },
+            {
+              name: 'Users',
+              to:'/base/users'
             }
           ]
         }

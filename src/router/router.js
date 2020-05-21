@@ -18,6 +18,10 @@ const Adduserform = () => import('@/components/Adduserform')
 const Organization = () => import('@/views/organization/Organization')
 const Login = () => import('@/views/login/Login')
 const Vieworganization = () => import('@/components/ViewOrganization')
+const ViewOrgDetails = () => import('@/components/ViewOrgDetails')
+
+const Users = () => import('@/views/users/Users')
+const User = () => import('@/views/users/User')
 
 Vue.use(Router)
 
@@ -72,6 +76,11 @@ function configRoutes() {
               component: Vieworganization
             },
             {
+              path: "/vieworganization/:id",
+              name: "organization-details",
+              component: ViewOrgDetails
+            },
+            {
               path: 'addorganization',
               name: 'Organizationform',
               component: Organizationform,
@@ -81,6 +90,32 @@ function configRoutes() {
               path: 'adduserform',
               name: 'Adduserform',
               component: Adduserform
+            },
+            {
+              path: 'users',
+              meta: {
+                label: 'Users'
+              },
+              component: {
+                render(c) {
+                  return c('router-view')
+                }
+              },
+              children: [
+                {
+                  path: '',
+                  name: 'Users',
+                  component: Users
+                },
+                {
+                  path: ':id',
+                  meta: {
+                    label: 'User Details'
+                  },
+                  name: 'User',
+                  component: User
+                }
+              ]
             }
           ]
         }

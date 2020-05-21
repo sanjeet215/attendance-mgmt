@@ -16,10 +16,10 @@
           </thead>
           <tbody>
             <tr v-for="org in organizations" :key="org.orgId">
-              <td class="td-style"><a class="text-primary" v-on:click="testClick(org.orgId)">{{org.orgRefName}}</a></td>
+              <td class="td-style"><a class="text-primary pointer" v-on:click="testClick(org.orgId)">{{org.orgRefName}}</a></td>
               <td class="td-style">{{org.orgName}}</td>
               <td class="td-style">{{org.description}}</td>
-              <td class="td-style">{{org.status}}</td>
+              <td class="td-style">{{org.status ? "Active" : "Disabled" }}</td>
             </tr>
           </tbody>
         </table>
