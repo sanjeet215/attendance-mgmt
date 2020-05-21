@@ -2,10 +2,10 @@
   <CRow>
     <CCol sm="8">
       <CCard>
-        <CCardHeader class="card-header">New Organization</CCardHeader>
+        <CCardHeader class="card-header">Update Organization</CCardHeader>
         <CCardBody>
           <form
-            id="neworganization"
+            id="updateorganization"
             @submit.prevent="submitForm"
             class="needs-validation"
             novalidate
@@ -72,82 +72,72 @@
 
             <div class="form-row">
               <div class="col-md-6 mb-3">
-                <label for="validationTooltip01">First Name *</label>
-                <div class="control" :class="{'form-group--error': $v.form.firstName.$error}">
+                <label for="validationTooltip01">Created By *</label>
+                <div class="control">
                   <input
-                    id="firstName"
+                    id="createdBy"
                     class="form-control"
                     type="text"
-                    placeholder="First Name"
-                    v-model="form.firstName"
-                    @input="$v.form.firstName.$touch()"
-                    @blur="$v.form.firstName.$touch()"
-                    :error-messages="firstNameErrors"
+                    placeholder="Created By"
+                    v-model="form.createdBy"
+                    @input="$v.form.createdBy.$touch()"
+                    @blur="$v.form.createdBy.$touch()"
                   />
                 </div>
-                <div class="error">
-                  <span>{{ firstNameErrors[0] }}</span>
-                </div>
+                <!-- <div class="error">
+                  <span>{{ createdByErrors[0] }}</span>
+                </div>-->
               </div>
-
               <div class="col-md-6 mb-3">
-                <label for="validationTooltip01">Last Name *</label>
-                <div class="control" :class="{'form-group--error': $v.form.lastName.$error}">
+                <label for="validationTooltip01">Modified By *</label>
+                <div class="control">
                   <input
-                    id="lastName"
+                    id="lastModifiedBy"
                     class="form-control"
                     type="text"
-                    placeholder="Last Name"
-                    v-model="form.lastName"
-                    @input="$v.form.lastName.$touch()"
-                    @blur="$v.form.lastName.$touch()"
-                    :error-messages="lastNameErrors"
+                    placeholder="Last Modified By"
+                    v-model="form.lastModifiedBy"
+                    @input="$v.form.lastModifiedBy.$touch()"
+                    @blur="$v.form.lastModifiedBy.$touch()"
                   />
-                </div>
-                <div class="error">
-                  <span>{{ lastNameErrors[0] }}</span>
                 </div>
               </div>
             </div>
 
             <div class="form-row">
               <div class="col-md-6 mb-3">
-                <label for="validationTooltip01">Contact Number *</label>
-                <div class="control" :class="{'form-group--error': $v.form.contactNumber.$error}">
+                <label for="validationTooltip01">Creation Date *</label>
+                <div class="control">
                   <input
-                    id="contactNumber"
+                    id="creationDate"
                     class="form-control"
                     type="text"
-                    placeholder="Contact Number"
-                    v-model="form.contactNumber"
-                    @input="$v.form.contactNumber.$touch()"
-                    @blur="$v.form.contactNumber.$touch()"
-                    :error-messages="contactNumberErrors"
+                    placeholder="Creation Date"
+                    v-model="form.creationDate"
+                    @input="$v.form.creationDate.$touch()"
+                    @blur="$v.form.creationDate.$touch()"
                   />
                 </div>
-                <div class="error">
-                  <span>{{ contactNumberErrors[0] }}</span>
-                </div>
+                <!-- <div class="error">
+                  <span>{{ createdByErrors[0] }}</span>
+                </div>-->
               </div>
               <div class="col-md-6 mb-3">
-                <label for="validationTooltip01">Contact Email *</label>
-                <div class="control" :class="{'form-group--error': $v.form.contactEmail.$error}">
+                <label for="validationTooltip01">Modification Date *</label>
+                <div class="control">
                   <input
-                    id="contactEmail"
+                    id="lastModifiedDate"
                     class="form-control"
                     type="text"
-                    placeholder="Contact Email"
-                    v-model="form.contactEmail"
-                    @input="$v.form.contactEmail.$touch()"
-                    @blur="$v.form.contactEmail.$touch()"
-                    :error-messages="contactEmailErrors"
+                    placeholder="Last Modification Date"
+                    v-model="form.lastModifiedDate"
+                    @input="$v.form.lastModifiedDate.$touch()"
+                    @blur="$v.form.lastModifiedDate.$touch()"
                   />
-                </div>
-                <div class="error">
-                  <span>{{ contactEmailErrors[0] }}</span>
                 </div>
               </div>
             </div>
+
             <div>
               <button class="btn btn-primary btn-submit" type="submit">Submit form</button>
               <!-- v-on:click.stop.prevent="submit" -->
@@ -183,12 +173,11 @@ export default {
       form: {
         orgRefName: "",
         orgName: "",
-        contactNumber: "",
-        contactEmail: "",
         description: "",
-        firstName: "",
-        lastName: "",
-        isDisabled: true
+        createdBy: "",
+        lastModifiedBy: "",
+        creationDate: "",
+        lastModifiedDate: ""
       }
     };
   },
@@ -205,28 +194,16 @@ export default {
     },
 
     getOrganizatioById(param) {
-       TutorialDataService.get(param).then(response => {
-         let serverData = response.data;
-         this.form = serverData.data;
-         console.log(this.form);
-       }).catch(function error(){
-         co,nsole.log(error);
-       });
-    },  
-
-    // getOrganizatioById(param){
-      
-    //   const serverData = TutorialDataService.get(param);
-    //   console.log('data read ----> '+ serverData);
-    //   console.log(serverData);
-    //   console.log(serverData.data)
-
-    //   if(serverData.status === 200){
-    //     console.log('Request sis successful');
-    //   }
-    //   this.form.orgName = 'serverData.data.data.orgName';
-    //   // console.log(TutorialDataService.get(param));
-    // },
+      TutorialDataService.get(param)
+        .then(response => {
+          let serverData = response.data;
+          this.form = serverData.data;
+          console.log(this.form);
+        })
+        .catch(function error() {
+          console.log(error);
+        });
+    },
 
     handleBlur(orgRefName) {
       if (orgRefName === "asiczen") {
@@ -289,10 +266,8 @@ export default {
       contactNumber: {
         required
       },
-      firstName: {
-        required,
-        maxLength: maxLength(16),
-        minLength: minLength(1)
+      createdBy: {
+        required
       },
       lastName: {
         required,
@@ -355,21 +330,12 @@ export default {
       return errors;
     },
 
-    firstNameErrors() {
+    createdByErrors() {
       const errors = [];
-      if (!this.$v.form.firstName.$dirty) return errors;
+      if (!this.$v.form.createdBy.$dirty) return errors;
 
-      !this.$v.form.firstName.required &&
-        errors.push("First Name is required.");
-
-      if (!this.haveSpecialChar(this.form.firstName)) {
-        errors.push("Special Characters such as @,#,$ not allowed.");
-      }
-
-      !this.$v.form.firstName.minLength &&
-        errors.push("First Name must be at atleast 1 character long");
-      !this.$v.form.firstName.maxLength &&
-        errors.push("First Name must be at most 16 characters long");
+      !this.$v.form.createdBy.required &&
+        errors.push("Created By is required.");
 
       return errors;
     },
@@ -388,21 +354,6 @@ export default {
         errors.push("Last Name must be at atleast 1 character long");
       !this.$v.form.lastName.maxLength &&
         errors.push("Last Name must be at most 16 characters long");
-
-      return errors;
-    },
-
-    contactNumberErrors() {
-      const errors = [];
-
-      if (!this.$v.form.contactNumber.$dirty) return errors;
-
-      !this.$v.form.contactNumber.required &&
-        errors.push("Contact Number is required.");
-
-      if (!this.isContactNumberValid(this.form.contactNumber)) {
-        errors.push("Please enter a valid contact number");
-      }
 
       return errors;
     },
