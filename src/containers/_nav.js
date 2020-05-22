@@ -36,6 +36,10 @@ export default
             {
               name: 'Users',
               to:'/base/users'
+            },
+            {
+              name: 'Employees',
+              to:'/base/employees'
             }
           ]
         }

@@ -23,6 +23,9 @@ const ViewOrgDetails = () => import('@/components/ViewOrgDetails')
 const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 
+const Employees = () => import('@/views/employees/Employees')
+const Employee = () => import('@/views/employees/Employee')
+
 Vue.use(Router)
 
 export const router = new Router({
@@ -90,6 +93,32 @@ function configRoutes() {
               path: 'adduserform',
               name: 'Adduserform',
               component: Adduserform
+            },
+            {
+              path: 'employees',
+              meta: {
+                label: 'Employees'
+              },
+              component: {
+                render(c) {
+                  return c('router-view')
+                }
+              },
+              children: [
+                {
+                  path: '',
+                  name: 'Employees',
+                  component: Employees
+                },
+                {
+                  path: ':id',
+                  meta: {
+                    label: 'Employee Details'
+                  },
+                  name: 'Employee',
+                  component: Employee
+                }
+              ]
             },
             {
               path: 'users',
