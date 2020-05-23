@@ -175,7 +175,7 @@
     <CRow>
       <CCol col="12" sm="6" lg="4">
         <CWidgetIcon
-          header="$1.999,50"
+          header="$1.220,50"
           text="Income"
           color="primary"
           :icon-padding="false"

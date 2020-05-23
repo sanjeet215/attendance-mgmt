@@ -11,36 +11,59 @@ export default
           _authentication: 'ROLE_USER'
         },
         {
+          _name: 'CSidebarNavItem',
+          name: 'My Analytics',
+          to: '/myorganization',
+          icon: 'cilChartPie',
+          _authentication: 'ROLE_USER'
+        },
+        {
+          _name: 'CSidebarNavItem',
+          name: 'Payroll',
+          to: '/myorganization',
+          icon: 'cilDollar',
+          _authentication: 'ROLE_USER'
+        },
+        {
           _name: 'CSidebarNavDropdown',
-          name: 'Manage Organization',
+          name: 'Manage Employee',
           route: '/base',
           icon: 'cil-People',
           _authentication: 'ROLE_USER',
           items: [
             {
-              name: 'Address',
-              to: '/base/addressform'
-            },
+              name: 'Employees',
+              to: '/base/employees'
+            }
+          ]
+        },
+        {
+          _name: 'CSidebarNavDropdown',
+          name: 'Manage Organization',
+          route: '/base1',
+          icon: 'cilLayers',
+          _authentication: 'ROLE_USER',
+          items: [
+            // {
+            //   name: 'Address',
+            //   to: '/base/addressform'
+            // },
             {
               name: 'New Organization',
               to: '/base/addorganization'
             },
+            // {
+            //   name: 'View Organization',
+            //   to: '/base/vieworganization'
+            // },
             {
               name: 'View Organization',
-              to: '/base/vieworganization'
+              to: '/base/users'
             },
-            {
-              name: 'Organization Details',
-              to: '/base/vieworganization/:id'
-            },
-            {
-              name: 'Users',
-              to:'/base/users'
-            },
-            {
-              name: 'Employees',
-              to:'/base/employees'
-            }
+            // {
+            //   name: 'Employees',
+            //   to: '/base/employees'
+            // }
           ]
         }
       ]

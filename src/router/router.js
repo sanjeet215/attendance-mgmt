@@ -20,11 +20,14 @@ const Login = () => import('@/views/login/Login')
 const Vieworganization = () => import('@/components/ViewOrganization')
 const ViewOrgDetails = () => import('@/components/ViewOrgDetails')
 
+
 const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 
 const Employees = () => import('@/views/employees/Employees')
 const Employee = () => import('@/views/employees/Employee')
+
+const MyOrganization = () => import('@/views/myorganization/MyOrganization')
 
 Vue.use(Router)
 
@@ -52,6 +55,11 @@ function configRoutes() {
           name: 'Dashboard',
           component: Dashboard,
           meta: { authorize: [Role.ROLE_MODERATOR] }
+        },
+        {
+          path: 'myorganization',
+          name: 'MyOrganization',
+          component: MyOrganization
         },
         {
           path: 'base',
