@@ -28,6 +28,8 @@ const Employees = () => import('@/views/employees/Employees')
 const Employee = () => import('@/views/employees/Employee')
 
 const MyOrganization = () => import('@/views/myorganization/MyOrganization')
+const MyDepartment = () => import('@/views/department/MyDepartment')
+
 
 Vue.use(Router)
 
@@ -62,6 +64,11 @@ function configRoutes() {
           component: MyOrganization
         },
         {
+          path: 'mydepartment',
+          name: 'MyDepartment',
+          component: MyDepartment
+        },
+        {
           path: 'base',
           redirect: '/base/cards',
           name: 'Base',
@@ -85,11 +92,6 @@ function configRoutes() {
               path: 'vieworganization',
               name: 'Vieworganization',
               component: Vieworganization
-            },
-            {
-              path: "/vieworganization/:id",
-              name: "organization-details",
-              component: ViewOrgDetails
             },
             {
               path: 'addorganization',

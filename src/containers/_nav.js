@@ -25,9 +25,16 @@ export default
           _authentication: 'ROLE_USER'
         },
         {
+          _name: 'CSidebarNavItem',
+          name: 'Manage Department',
+          to: '/mydepartment',
+          icon: 'cilTask',
+          _authentication: 'ROLE_USER'
+        },
+        {
           _name: 'CSidebarNavDropdown',
           name: 'Manage Employee',
-          route: '/base',
+          route: '/base2',
           icon: 'cil-People',
           _authentication: 'ROLE_USER',
           items: [
