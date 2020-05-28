@@ -4,7 +4,7 @@
       <CCard>
         <CCardHeader class="card-header">New Organization</CCardHeader>
         <CCardBody>
-          <form id="neworganization" @submit.prevent="submitForm" class="needs-validation" novalidate>
+          <form id="neworganization" v-on:submit.prevent.self="onSubmit" class="needs-validation" novalidate>
             <div class="form-row">
               <div class="col-md-5 mb-3">
                 <label for="validationTooltip01">Organization Ref Name *</label>
@@ -158,7 +158,7 @@
 
 <script>
 //import { orgService } from "../_services/organization.service";
-import { userService } from "../_services/index.js";
+import OrganizationFormService from "../service/OrganizationFormService";
 
 import { validationMixin } from "vuelidate";
 import {
@@ -199,14 +199,16 @@ export default {
     //   //console.log(e.orgRefName);
       
     // },
-    submitForm(){
+    onSubmit(){
       console.log('FOrm started');
-      // this.validateOrgRefId();
-      this.userService.test();
-
+       OrganizationFormService.test(this.form);
+      console.log('Form submitted')
     },
 
     checkUniqueOrg(orgRefName) {
+
+      OrganizationFormService.validate(orgRefName);
+
     if (orgRefName === "asiczen") {
         return false;
       } else {
@@ -356,7 +358,7 @@ export default {
       const errors = [];
       if (!this.$v.form.lastName.$dirty) return errors;
 
-      !this.$v.form.lastName.required && errors.push("First Name is required.");
+      !this.$v.form.lastName.required && errors.push("Last Name is required.");
 
       if (!this.haveSpecialChar(this.form.lastName)) {
         errors.push("Special Characters such as @,#,$ not allowed.");
