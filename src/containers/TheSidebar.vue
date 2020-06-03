@@ -78,7 +78,7 @@ export default {
           })
         )
       );
-      console.log("End of code");
+      //console.log("End of code");
       // return this.nav.filter( function(item) {
       //              item = item._children.filter(function(innerItem){
       //                 if(innerItem._authentication === 'ROLE_MODERATOR'){
@@ -107,12 +107,12 @@ export default {
         }
       });
 
-      console.log("Child Array before filter -->");
+      // console.log("Child Array before filter -->");
 
-      child_array.forEach(item => {
-        console.log(item._name);
-        console.log(item._authentication);
-      });
+      // child_array.forEach(item => {
+      //   console.log(item._name);
+      //   console.log(item._authentication);
+      // });
 
       child_array = child_array.filter(function(item) {
         if (item._authentication === "ROLE_USER") {
@@ -120,12 +120,12 @@ export default {
         }
       });
 
-      console.log("Child Array after filter -->");
+ //     console.log("Child Array after filter -->");
 
-      child_array.forEach(item => {
-        console.log(item._name);
-        console.log(item._authentication);
-      });
+      // child_array.forEach(item => {
+      //   console.log(item._name);
+      //   console.log(item._authentication);
+      // });
 
       return menu;
     }

@@ -2,9 +2,14 @@
   <CRow>
     <CCol sm="8">
       <CCard>
-        <CCardHeader class="card-header">New Organization</CCardHeader>
+        <CCardHeader class="card-header">New Organization1</CCardHeader>
         <CCardBody>
-          <form id="neworganization" v-on:submit.prevent.self="onSubmit" class="needs-validation" novalidate>
+          <form
+            id="neworganization"
+            v-on:submit.prevent="onSubmit"
+            class="needs-validation"
+            novalidate
+          >
             <div class="form-row">
               <div class="col-md-5 mb-3">
                 <label for="validationTooltip01">Organization Ref Name *</label>
@@ -151,6 +156,17 @@
         </CCardBody>
       </CCard>
     </CCol>
+    <CCol>
+      <!-- <CCard>
+        <CCardHeader class="card-header">Upload Multiple</CCardHeader>
+        <CCardBody class="card-body">
+          <div class="form-row">
+            <CInputFile horizontal custom />
+          </div>
+        </CCardBody>
+      </CCard> -->
+      <OrganizationFileUpload />
+    </CCol>
   </CRow>
 
   <!-- </div> -->
@@ -169,11 +185,16 @@ import {
   between
 } from "vuelidate/lib/validators";
 import Vuelidate from "vuelidate";
+import OrganizationFileUpload from "./OrganizationFileUpload"
+
 
 export default {
   name: "Organizationform",
   props: ["clickedNext", "currentStep"],
   mixins: [validationMixin],
+  components: {
+    OrganizationFileUpload
+  },
   data() {
     errors: [];
     return {
@@ -197,19 +218,25 @@ export default {
     //   this.service.validateOrgRefId();
     //   console.log("This method is invoked - submit form");
     //   //console.log(e.orgRefName);
-      
+
     // },
-    onSubmit(){
-      console.log('FOrm started');
-       OrganizationFormService.test(this.form);
-      console.log('Form submitted')
+    onSubmit() {
+
+      console.log("FOrm started" + this.$v);
+
+      if(!this.$v.form.$touch()){
+        console.log('Form not submitted');
+        return;
+      }
+
+      console.log('my analytics components --> Reaading data from store ------>'+ this.$store.state.token);
+      console.log("Form submitted");
     },
 
     checkUniqueOrg(orgRefName) {
-
       OrganizationFormService.validate(orgRefName);
 
-    if (orgRefName === "asiczen") {
+      if (orgRefName === "asiczen") {
         return false;
       } else {
         return true;

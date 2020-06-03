@@ -8,10 +8,7 @@ class OrganizationFormService {
     }
 
     validate(fromrefname) {
-
-        console.log('Control came here' + fromrefname);
-
-        return http.post("http://localhost:8081/api/org/validate?orgRefName=asiczen1",{
+    return http.post("/org/validate",{
             params: {
                 orgRefName : fromrefname
             }

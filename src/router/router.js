@@ -165,56 +165,15 @@ function configRoutes() {
 
 
 // router.beforeEach((to, from, next) => {
-//   // redirect to login page if not logged in and trying to access a restricted page
-//   const publicPages = ['/login', '/logint'];
+//   const publicPages = ['/login', '/register', '/home'];
 //   const authRequired = !publicPages.includes(to.path);
 //   const loggedIn = localStorage.getItem('user');
-//   const role = JSON.parse(loggedIn).roles[0];
 
-//   console.log(role);
-
-
+//   // trying to access a restricted page + not logged in
+//   // redirect to login page
 //   if (authRequired && !loggedIn) {
-//     return next('/login');
+//     next('/login');
+//   } else {
+//     next();
 //   }
-
-//   next();
-// })
-
-// router.beforeEach((to, from, next) => {
-//   // redirect to login page if not logged in and trying to access a restricted page
-//   const { authorize } = to.meta;
-//   //const currentUser = authenticationService.currentUserValue;
-//   const loggedIn = localStorage.getItem('user');
-//   let currentUser = 'ROLE_ANONYMOUS';
-
-// console.log('test'+ loggedIn)
-
-//   if (loggedIn) {
-//     currentUser = JSON.parse(loggedIn).roles[0];
-//     console.log("current role "+currentUser)
-//   }
-
-  // if (authorize) {
-  //   if (currentUser === Role.ROLE_USER) {
-  //     // not logged in so redirect to login page with the return url
-  //     console.log('Came to this condition');
-  //     return next({ path: "/dashboard", query: { returnUrl: to.path } });
-  //   }
-
-  //   if (currentUser === Role.ROLE_MODERATOR) {
-  //     // not logged in so redirect to login page with the return url
-  //     console.log('This condition worked 2nd');
-
-  //     return next({ path: "/dashboard" });
-  //   }
-
-  //   // check if route is restricted by role
-  //   if (authorize.length && !authorize.includes(currentUser.role)) {
-  //     // role not authorised so redirect to home page
-  //     return next({ path: "/" });
-  //   }
-  // }
-
-  //next();
 // });

@@ -83,8 +83,6 @@ export default {
 
   methods: {
     getDepartmentcount() {
-    console.log('I am executed');
-
       AnalyticsService.getDeprtmentCount()
         .then(response => {
           let serverData = response.data;
