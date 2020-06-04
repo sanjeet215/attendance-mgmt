@@ -1,7 +1,37 @@
 import http from "../http-common";
 
-class OrganizationFormService {
+const API_URL = 'http://localhost:8081/api/';
 
+class OrganizationFormService {
+    
+    create(form) {
+        return http
+          .post(API_URL + 'org', {
+            orgRefName: form.orgRefName,
+            orgName: form.orgName,
+            description: form.description,
+            firstName: form.firstName,
+            lastName: form.lastName,
+            contactNumber: form.contactNumber,
+            contactEmail: form.contactEmail
+          })
+          .then(response => {
+            if (response.data.status === '201') {
+              console.log('success');
+              console.log(response.data.message);
+            }   
+            return response.data;
+          });
+      }
+
+
+
+
+
+
+    // create(data) {
+    //     return http.post("/org", data);
+    // }
 
     test(form){
         console.log('method invoked');
@@ -21,10 +51,6 @@ class OrganizationFormService {
 
     get(id) {
         return http.get(`/org/${id}`);
-    }
-
-    create(data) {
-        return http.post("/org", data);
     }
 
     update(id, data) {

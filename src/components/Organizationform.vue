@@ -2,7 +2,7 @@
   <CRow>
     <CCol sm="8">
       <CCard>
-        <CCardHeader class="card-header">New Organization1</CCardHeader>
+        <CCardHeader class="card-header">New Organization</CCardHeader>
         <CCardBody>
           <form
             id="neworganization"
@@ -164,7 +164,7 @@
             <CInputFile horizontal custom />
           </div>
         </CCardBody>
-      </CCard> -->
+      </CCard>-->
       <OrganizationFileUpload />
     </CCol>
   </CRow>
@@ -185,8 +185,8 @@ import {
   between
 } from "vuelidate/lib/validators";
 import Vuelidate from "vuelidate";
-import OrganizationFileUpload from "./OrganizationFileUpload"
-
+import OrganizationFileUpload from "./OrganizationFileUpload";
+//import Toaster from "./toasters/Toaster";
 
 export default {
   name: "Organizationform",
@@ -207,7 +207,9 @@ export default {
         firstName: "",
         lastName: "",
         isDisabled: true
-      }
+      },
+
+      toasterMessage:"This is from variable"
     };
   },
 
@@ -220,21 +222,53 @@ export default {
     //   //console.log(e.orgRefName);
 
     // },
+    makeToast(variant = null) {
+        this.$bvToast.toast(`${this.toasterMessage}`, {
+          title: 'Action Message',
+          autoHideDelay: 5000,
+          variant: variant,
+          solid: true,
+          appendToast: false
+        })
+      },
     onSubmit() {
-
       console.log("FOrm started" + this.$v);
 
-      if(!this.$v.form.$touch()){
-        console.log('Form not submitted');
+      this.toasterMessage = 'Form submitted successfully';
+      this.makeToast('primary');
+
+      if (!this.$v.form.$touch()) {
+        console.log("Form touched");
+        OrganizationFormService.create(this.form)
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+
+            if(error.response.status === '400')
+            {
+               this.toasterMessage = 'Bad request from applicaiton';
+               this.makeToast('danger');
+            } else {
+                this.toasterMessage = 'There is some error please rectify';
+                this.makeToast('danger');
+            }
+            console.log('Control came to block');
+            console.log(error.response.status);
+          });
+      } else {
+        this.toasterMessage = "Error Message"
+        this.makeToast('danger');
         return;
       }
 
-      console.log('my analytics components --> Reaading data from store ------>'+ this.$store.state.token);
-      console.log("Form submitted");
+
+      // console.log('my analytics components --> Reaading data from store ------>'+ this.$store.state.token);
+      // console.log("Form submitted");
     },
 
     checkUniqueOrg(orgRefName) {
-      OrganizationFormService.validate(orgRefName);
+      //OrganizationFormService.validate(orgRefName);
 
       if (orgRefName === "asiczen") {
         return false;
