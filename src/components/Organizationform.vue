@@ -209,7 +209,7 @@ export default {
         isDisabled: true
       },
 
-      toasterMessage:"This is from variable"
+      toasterMessage: "This is from variable"
     };
   },
 
@@ -223,45 +223,55 @@ export default {
 
     // },
     makeToast(variant = null) {
-        this.$bvToast.toast(`${this.toasterMessage}`, {
-          title: 'Action Message',
-          autoHideDelay: 5000,
-          variant: variant,
-          solid: true,
-          appendToast: false
-        })
-      },
+      this.$bvToast.toast(`${this.toasterMessage}`, {
+        title: "Message",
+        autoHideDelay: 5000,
+        variant: variant,
+        solid: true,
+        appendToast: false
+      });
+    },
     onSubmit() {
-      console.log("FOrm started" + this.$v);
+      console.log("FOrm started");
 
-      this.toasterMessage = 'Form submitted successfully';
-      this.makeToast('primary');
+      // this.toasterMessage = 'Form submitted successfully';
+      // this.makeToast('primary');
 
       if (!this.$v.form.$touch()) {
         console.log("Form touched");
         OrganizationFormService.create(this.form)
           .then(response => {
-            console.log(response);
+            
+           if(response.data.status === 226){
+              this.toasterMessage = response.data.message;
+              this.makeToast("danger");
+            }
+
+            if(response.data.status === 201){
+              this.toasterMessage = response.data.message;
+              this.makeToast("success");
+            }
+
           })
           .catch(error => {
-
-            if(error.response.status === '400')
-            {
-               this.toasterMessage = 'Bad request from applicaiton';
-               this.makeToast('danger');
+            if (error.response.status === "400") {
+              this.toasterMessage = "Bad request from applicaiton";
+              this.makeToast("warning");
+            } else if (error.response.status === "226") {
+              this.toasterMessage = error.response.data.message;
+              this.makeToast("danger");
             } else {
-                this.toasterMessage = 'There is some error please rectify';
-                this.makeToast('danger');
+              this.toasterMessage = "There is some error please rectify";
+              this.makeToast("danger");
             }
-            console.log('Control came to block');
-            console.log(error.response.status);
+            console.log("Control came to block");
+            console.log(error.response.data.status);
           });
       } else {
-        this.toasterMessage = "Error Message"
-        this.makeToast('danger');
+        this.toasterMessage = "Please fill the details to submit the form";
+        this.makeToast("danger");
         return;
       }
-
 
       // console.log('my analytics components --> Reaading data from store ------>'+ this.$store.state.token);
       // console.log("Form submitted");
